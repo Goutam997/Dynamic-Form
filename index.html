@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>FORM AND TABLE USING JavaScript</title>
+        <link rel="stylesheet" href="css/bootstrap.min.css">
+    </head>
+    <body>
+        <div class="container jumbotron" id="myForm">
+            <h1 id="title">Enter your Personal data</h1>
+            <p id="description">This is a dynamic form where the fields are fixed and the rows are added dynamically by taking personal data one at a time</p>
+            <table>
+                <tr>
+                    <td><input type="text" id="first_name" placeholder="First Name"></td>
+                    <td><input type="text" id="last_name" placeholder="Last Name"></td>
+                </tr>
+                <tr>
+                    <td><input type="text" id="address" placeholder="Address"></td>
+                    <td><input type="number" id="zip" placeholder="Pincode"></td>
+                </tr>
+                <tr>
+                    <td><label for="gender">Gender: </label>
+                        <input type="radio" name="gender" value="male">Male 
+                        <input type="radio" name="gender" value="female">Female 
+                    </td>
+                </tr>
+                <td><input type="button" class="primary-button" id="add" value="Add"></td>    
+            </tr>
+        </table>
+        </div>
+
+        <div class="container-fluid" id="my_table">
+            <table id="table_of_information" class="table table-bordered table-stripped jumbotron">
+                <tr>
+                    <td>First NAME</td>
+                    <td>Last name</td>
+                    <td>Address</td>   
+                    <td>Pincode</td>
+                    <td>Gender</td>
+                </tr>
+            </table>
+        </div>
+        <script src="js/jquery-3.6.0.min.js"></script>
+        <script src="js/bootstrap.min.js"></script>   
+        <script src="https://app.zenclass.in/sheets/v1/js/zen/suite/bundle.js"></script>     
+        <script>
+            'use strict';
+            
+            // let c= gender.filter( x => x.checked);
+            let table = document.getElementById('table_of_information');
+            document.getElementById('add').addEventListener('click', function(){
+                let c = document.querySelector( 'input[name="gender"]:checked').value; 
+                let first_name = document.getElementById('first_name').value;
+                let last_name = document.getElementById('last_name').value;
+                let zip = document.getElementById('zip').value;
+                let address = document.getElementById('address').value;
+                let gender = document.getElementsByName('gender');
+                console.log(c);
+                let row_count = table.rows.length;
+                let row = table.insertRow(row_count);
+                row.insertCell(0).innerHTML=first_name;
+                row.insertCell(1).innerHTML=last_name;
+                row.insertCell(2).innerHTML=address;
+                row.insertCell(3).innerHTML=zip;
+                row.insertCell(4).innerHTML=c;
+            });
+
+            function delete_row(data){
+                document.getElementById("table_of_information").deleteRow(this.row);
+            }  
+            function clearFields(){
+                first_name= "";
+                last_name= "";
+                address="";
+                zip = "";
+
+            }     
+
+        </script>
+    </body>
+</html>
